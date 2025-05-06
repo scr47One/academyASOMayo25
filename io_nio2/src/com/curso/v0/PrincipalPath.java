@@ -1,26 +1,40 @@
 package com.curso.v0;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public class PrincipalPath {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		String currentDir = System.getProperty("user.dir");
-		var path = Path.of(currentDir + "/data/");
-		if (Files.exists(path)) {
+		Path path = Path.of(currentDir + "/data/texto.txt");
+		if (Files.exists(path,LinkOption.NOFOLLOW_LINKS)) {
 			System.out.println("Absolute Path: " + path.toAbsolutePath());
 			System.out.println("Is Directory: " + Files.isDirectory(path));
 			System.out.println("Parent Path: " + path.getParent());
 			if (Files.isRegularFile(path)) {
-				System.out.println("Size: " + Files.size(path));
+				try {
+					System.out.println("Size: " + Files.size(path));
+					System.out.println("Last Modified: " + Files.getLastModifiedTime(path));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-			System.out.println("Last Modified: " + Files.getLastModifiedTime(path));
-		} else {
-			try (Stream<Path> stream = Files.list(path)) {
-				stream.forEach(p -> System.out.println("  " + p.getNameCount()));
+			else {
+//				try (Stream<Path> stream = Files.list(path)) {
+//					stream.forEach(p -> System.out.println("  " + p.getName(6)));
+//				}
+				try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(path)) {
+				    for (Path p : directoryStream) {
+				        System.out.println(" " + p.getName(6));
+				    }
+				} catch (IOException e) {
+					e.printStackTrace();
+				} 
 			}
 		}
 	}
