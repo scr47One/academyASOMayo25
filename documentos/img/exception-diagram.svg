@@ -1,0 +1,69 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo y título -->
+  <rect width="800" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Flujo de Excepciones en Try-with-resources</text>
+  
+  <!-- Inicio del programa -->
+  <rect x="350" y="70" width="100" height="40" rx="5" ry="5" fill="#c3e6cb" stroke="#28a745" stroke-width="2"/>
+  <text x="400" y="95" font-family="Arial" font-size="14" text-anchor="middle">Inicio</text>
+  
+  <!-- Creación del MicroService -->
+  <rect x="290" y="130" width="220" height="40" rx="5" ry="5" fill="#b8daff" stroke="#007bff" stroke-width="2"/>
+  <text x="400" y="155" font-family="Arial" font-size="14" text-anchor="middle">new MicroService("X")</text>
+  
+  <!-- Impresión del mensaje de inicio -->
+  <rect x="290" y="190" width="220" height="40" rx="5" ry="5" fill="#d6d8db" stroke="#6c757d" stroke-width="2"/>
+  <text x="400" y="215" font-family="Arial" font-size="14" text-anchor="middle">Imprime: "X started"</text>
+  
+  <!-- Llamada al método availService -->
+  <rect x="290" y="250" width="220" height="40" rx="5" ry="5" fill="#b8daff" stroke="#007bff" stroke-width="2"/>
+  <text x="400" y="275" font-family="Arial" font-size="14" text-anchor="middle">ms.availService("test")</text>
+  
+  <!-- Excepción InternalException -->
+  <rect x="290" y="310" width="220" height="40" rx="5" ry="5" fill="#f5c6cb" stroke="#dc3545" stroke-width="2"/>
+  <text x="400" y="335" font-family="Arial" font-size="14" text-anchor="middle">Lanza InternalException</text>
+  
+  <!-- Try-with-resources intenta cerrar -->
+  <rect x="290" y="370" width="220" height="40" rx="5" ry="5" fill="#b8daff" stroke="#007bff" stroke-width="2"/>
+  <text x="400" y="395" font-family="Arial" font-size="14" text-anchor="middle">try-with-resources llama close()</text>
+  
+  <!-- Excepción ExternalException -->
+  <rect x="290" y="430" width="220" height="40" rx="5" ry="5" fill="#f5c6cb" stroke="#dc3545" stroke-width="2"/>
+  <text x="400" y="455" font-family="Arial" font-size="14" text-anchor="middle">close() lanza ExternalException</text>
+  
+  <!-- Resultado: REGLA 1 -->
+  <rect x="240" y="490" width="320" height="60" rx="5" ry="5" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <text x="400" y="515" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">REGLA 1: Se mantiene la primera excepción</text>
+  <text x="400" y="535" font-family="Arial" font-size="14" text-anchor="middle">ExternalException se añade como suprimida</text>
+  
+  <!-- Flechas de conexión -->
+  <line x1="400" y1="110" x2="400" y2="130" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="170" x2="400" y2="190" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="230" x2="400" y2="250" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="290" x2="400" y2="310" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="350" x2="400" y2="370" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="410" x2="400" y2="430" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="470" x2="400" y2="490" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Definición de la flecha para los marcadores -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000"/>
+    </marker>
+  </defs>
+  
+  <!-- Cuadro de explicación de la salida del programa -->
+  <rect x="50" y="390" width="160" height="100" rx="5" ry="5" fill="#e2e3e5" stroke="#6c757d" stroke-width="2"/>
+  <text x="130" y="410" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">Salida del programa:</text>
+  <text x="130" y="435" font-family="Arial" font-size="12" text-anchor="middle">X started</text>
+  <text x="130" y="455" font-family="Arial" font-size="12" text-anchor="middle">InternalException: ...</text>
+  <text x="130" y="475" font-family="Arial" font-size="12" text-anchor="middle">ExternalException: ...</text>
+  
+  <!-- Cuadro de explicación de las reglas -->
+  <rect x="590" y="390" width="160" height="100" rx="5" ry="5" fill="#e2e3e5" stroke="#6c757d" stroke-width="2"/>
+  <text x="670" y="410" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">Reglas:</text>
+  <text x="670" y="430" font-family="Arial" font-size="11" text-anchor="middle">Regla 1: Si hay excepción</text>
+  <text x="670" y="445" font-family="Arial" font-size="11" text-anchor="middle">en try y en close(), gana</text>
+  <text x="670" y="460" font-family="Arial" font-size="11" text-anchor="middle">la del try. La de close()</text>
+  <text x="670" y="475" font-family="Arial" font-size="11" text-anchor="middle">se vuelve suprimida.</text>
+</svg>
