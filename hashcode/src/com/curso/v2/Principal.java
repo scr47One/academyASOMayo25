@@ -8,7 +8,7 @@ public class Principal {
 	public static void main(String[] args) {
 
 		Book book1 = new Book(123,"Patrobas","Javascript");
-		Book book2 = new Book(123,"Patrobas","Javascript");
+		Book book2 = new Book(123,"PatrobasX","JavascriptX");
 		Book book3 = new Book(345,"Andronico","PHP");
 		
 		System.out.println(book1.equals(book2)); //true
