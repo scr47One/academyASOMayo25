@@ -23,7 +23,7 @@ public class Book  {
 	}
 	
 	public int hashCode() {
-		return ISBN;
+		return 0;
 	}
 
 	@Override

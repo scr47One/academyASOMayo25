@@ -13,6 +13,7 @@ public class Principal {
 		ps = System.err;
 		
 		ps.println("HOLA MUNDO");
+		
 	}
 
 }
