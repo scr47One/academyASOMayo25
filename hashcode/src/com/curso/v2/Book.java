@@ -1,0 +1,35 @@
+package com.curso.v2;
+
+
+public class Book  {
+
+	private int ISBN;
+	private String author, title;
+	private int pageCount;
+	
+	public Book(int ISBN, String author, String title) {
+		this.ISBN = ISBN;
+		this.author = author;
+		this.title = title;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Book)) {
+			return false;
+		}
+		Book other = (Book)obj;
+		return this.ISBN == other.ISBN;
+	}
+	
+	public int hashCode() {
+		return ISBN;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [ISBN=" + ISBN + ", author=" + author + ", title=" + title + "]";
+	}
+	
+	
+}
