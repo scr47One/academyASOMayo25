@@ -316,10 +316,11 @@ class EmpleadoServiceTest {
                 "IT"
         );
         
-        // Act - Llamar al método privado convertToDTO a través de un método público
-        EmpleadoDTO dto = empleadoService.getEmpleadoById(5L); // Mockear para llegar a convertToDTO
+        // Primero configuramos el mock
         when(empleadoRepository.findById(5L)).thenReturn(Optional.of(testEmpleado));
-        dto = empleadoService.getEmpleadoById(5L);
+        
+        // Act - Llamar al método privado convertToDTO a través de un método público
+        EmpleadoDTO dto = empleadoService.getEmpleadoById(5L);
         
         // Assert
         assertEquals(5L, dto.getId());

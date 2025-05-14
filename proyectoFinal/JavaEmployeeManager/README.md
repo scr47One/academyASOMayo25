@@ -1,10 +1,10 @@
 # Sistema de Gestión de Empleados
 
-Un sistema completo para la gestión de empleados desarrollado con Java Spring Boot y Vaadin Framework.
+Un sistema para la gestión de empleados desarrollado con Java Spring Boot y Thymeleaf para la interfaz de usuario web.
 
 ## Descripción
 
-Esta aplicación proporciona una interfaz completa para gestionar información de empleados, con un backend RESTful desarrollado en Spring Boot y un frontend interactivo construido con Vaadin Framework.
+Esta aplicación proporciona una interfaz web para gestionar información de empleados, con un backend RESTful desarrollado en Spring Boot y una interfaz de usuario construida con Thymeleaf.
 
 ## Características
 
@@ -14,18 +14,14 @@ Esta aplicación proporciona una interfaz completa para gestionar información d
 - Arquitectura en capas (Controller, Service, Repository)
 - Validación de datos y manejo de excepciones
 - Base de datos H2 en memoria (fácilmente configurable para bases de datos persistentes)
-- Documentación API con Swagger/OpenAPI
+- Documentación API con SpringDoc/OpenAPI (Swagger UI)
 - Pruebas unitarias y de integración con cobertura superior al 90%
 
-### Frontend (Vaadin)
+### Frontend (Thymeleaf)
 
-- Dashboard con estadísticas de empleados
-- Visualización de distribución de empleados por departamento
-- Gestión completa CRUD de empleados
-- Filtrado y ordenación de datos
-- Validación de formularios en tiempo real
-- Diseño responsivo (compatible con móviles y escritorio)
-- Tema personalizado con Lumo
+- Interfaz web para la visualización de empleados
+- Gestión completa CRUD (Crear, Leer, Actualizar, Borrar) de empleados a través de formularios web
+- Interfaz de usuario renderizada en el servidor con plantillas Thymeleaf
 
 ## Capturas de Pantalla
 
@@ -34,6 +30,8 @@ Esta aplicación proporciona una interfaz completa para gestionar información d
 
 ### Gestión de Empleados
 ![Empleados](screenshot-empleados.png)
+
+*(Nota: Las capturas de pantalla podrían necesitar actualización si la interfaz de usuario ha cambiado significativamente).*
 
 ## Requisitos
 
@@ -44,9 +42,8 @@ Esta aplicación proporciona una interfaz completa para gestionar información d
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/tuusuario/empleados-app.git
+   git clone [https://github.com/tuusuario/empleados-app.git](https://github.com/tuusuario/empleados-app.git)
    cd empleados-app
-   ```
 
 2. Compilar y ejecutar con Maven:
    ```bash
@@ -55,7 +52,7 @@ Esta aplicación proporciona una interfaz completa para gestionar información d
    ```
 
 3. Acceder a la aplicación:
-   - **Frontend Vaadin**: http://localhost:8000/
+   - **Frontend Thymeleaf**: http://localhost:8000/
    - **Swagger API Docs**: http://localhost:8000/swagger-ui.html
    - **API REST**: http://localhost:8000/api/empleados
 
@@ -68,25 +65,21 @@ src/
 │   │   └── com/
 │   │       └── empleados/
 │   │           └── api/
-│   │               ├── config/                  # Configuración Spring y Swagger
+│   │               ├── config/                  # Configuración Spring y SpringDoc/OpenAPI
 │   │               ├── controller/              # Controladores REST
 │   │               ├── dto/                     # Objetos de transferencia de datos
 │   │               ├── exception/               # Excepciones personalizadas
 │   │               ├── model/                   # Entidades JPA
 │   │               ├── repository/              # Repositorios Spring Data
 │   │               ├── service/                 # Servicios de negocio
-│   │               └── ui/                      # Componentes Vaadin
-│   │                   ├── config/              # Configuración del frontend
-│   │                   ├── service/             # Servicios específicos para UI
-│   │                   └── views/               # Vistas Vaadin
-│   │                       ├── dashboard/       # Vista de dashboard
-│   │                       ├── empleados/       # Vista de gestión de empleados
-│   │                       └── layout/          # Layouts compartidos
+│   │               └── ui/                      # Lógica de interfaz de usuario
+│   │                   └── controller/          # Controladores para la interfaz web (Thymeleaf)
 │   └── resources/
 │       ├── application.properties              # Configuración de la aplicación
-│       └── META-INF/resources/
-│           ├── frontend/                       # Recursos frontend
-│           └── themes/                         # Temas personalizados
+│       ├── templates/                          # Plantillas HTML (Thymeleaf)
+│       └── META-INF/resources/                 # Recursos web estáticos (CSS, JS)
+│           ├── themes/                         # Temas (CSS)
+│           └── frontend/                       # Otros recursos frontend (CSS, JS)
 └── test/
     └── java/                                  # Pruebas unitarias e integración
 ```
@@ -94,7 +87,7 @@ src/
 ## Tecnologías Utilizadas
 
 - **Backend**: Spring Boot, Spring Data JPA, Spring Web, H2 Database, Lombok, Swagger/OpenAPI
-- **Frontend**: Vaadin Flow, Lumo Theme
+- **Frontend**: Thymeleaf
 - **Testing**: JUnit, Mockito, Spring Test, JaCoCo
 
 ## Documentación
