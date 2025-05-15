@@ -1,0 +1,20 @@
+<span id="rule_generic_cov_return">
+ <p> <b>Rule of Covariant Returns</b><br>
+   An overriding method (i.e. a sub class's method) is allowed to return a sub-type of the type returned by the overridden method (i.e. super class's method).<br>
+<br>
+So, first check whether the return type of the overriding method is a subtype. For example, if the overridden method returns <font face="monospace"><b>List</b></font>, the overriding method can return <font face="monospace"><b>ArrayList</b></font> but not <font face="monospace"><b>Object</b></font>.<br>
+<br>
+Next, you need to check the type specification of generic types. This is a bit complicated. To determine this, you must remember the following hierarchy of subtypes. Assuming that <font face="monospace"><b>S</b></font> is a sub type of <font face="monospace"><b>T</b></font> and <font face="monospace"><b>&lt;&lt;&lt;</b></font> means "is a subtype of", here are the two hierarchies:<br>
+<br>
+   <b>Hierarchy 1 :</b> <font face="monospace"><b>A&lt;S&gt;    &lt;&lt;&lt;    A&lt;? extends S&gt;    &lt;&lt;&lt;    A&lt;? extends T&gt;</b></font><br>
+Example: Since <font face="monospace"><b>Integer</b></font> is a subtype of <font face="monospace"><b>Number</b></font>, <font face="monospace"><b>List&lt;Integer&gt;</b></font> is a subtype of <font face="monospace"><b>List&lt;? extends Integer&gt;</b></font> and <font face="monospace"><b>List&lt;? extends Integer&gt;</b></font> is a subtype of <font face="monospace"><b>List&lt;? extends Number&gt;.</b></font><br>
+Thus, if an overridden method returns <font face="monospace"><b>List&lt;? extends Integer&gt;</b></font>, the overriding method can return <font face="monospace"><b>List&lt;Integer&gt;</b></font> but not <font face="monospace"><b>List&lt;Number&gt;</b></font> or <font face="monospace"><b>List&lt;? extends Number&gt;</b></font>.<br>
+<br>
+<br>
+   <b>Hierarchy 2 :</b> <font face="monospace"><b>A&lt;T&gt;    &lt;&lt;&lt;    A&lt;?  super  T&gt;    &lt;&lt;&lt;    A&lt;?  super  S&gt;</b></font><br>
+Example: <font face="monospace"><b>List&lt;Number&gt;</b></font> is a subtype of <font face="monospace"><b>List&lt;? super Number&gt;</b></font> and <font face="monospace"><b>List&lt;? super Number&gt;</b></font> is a subtype of <font face="monospace"><b>List&lt;? super Integer&gt;</b></font><br>
+Thus, if an overridden method returns <font face="monospace"><b>List&lt;? super Number&gt;</b></font>, the overriding method can return <font face="monospace"><b>List&lt;Number&gt;</b></font> but not <font face="monospace"><b>List&lt;Integer&gt;</b></font> or <font face="monospace"><b>List&lt;? super Integer&gt;</b></font>.<br>
+<br>
+<br>
+It is important to understand that <font face="monospace"><b>List&lt;Integer&gt;</b></font> is not a subtype of <font face="monospace"><b>List&lt;Number&gt;</b></font> even though <font face="monospace"><b>Integer</b></font> is a subtype of <font face="monospace"><b>Number</b></font>.
+</span><span id="close_rule_generic_cov_return"/>
